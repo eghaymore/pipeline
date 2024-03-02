@@ -1,0 +1,17 @@
+version: '3.7'
+services:
+  etl_client:
+    image: etl_img
+    restart: no
+    container_name: "etl_client_container"
+    ports:
+      - 5433:5432
+    environment:
+      - POSTGRES_USER=dba
+      - POSTGRES_PASSWORD=haha
+      - POSTGRES_DB=customers
+    volumes:
+      - etl_client_data_container:/var/lib/postgresql/data
+volumes:
+  etl_client_data_container:
+
