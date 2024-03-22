@@ -6,7 +6,10 @@
         <meta name="keywords" content="html tutorial template">
     </head>
     <body>
-	<?php echo '<h1>Hello World!</h1>'; ?>
+	<?php
+		echo '<h1>Hello World!</h1>';
+		echo '<p>Hello git Hooks!</p>';
+	?>
 	<main>
 		<form action="includes/formhanlder.php" method="post">
 			<label for="firstname">First Name:</label>
