@@ -3,3 +3,5 @@ customers_backup.sql
 out/
 
 webApp/link_index.php
+
+webApp/pre-commit
