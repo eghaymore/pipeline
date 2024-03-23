@@ -10,6 +10,8 @@ services:
       - POSTGRES_USER=dba
       - POSTGRES_PASSWORD=haha
       - POSTGRES_DB=customers
+      - LANG=en_US.utf8
+      - LC_ALL=en_US.utf8
     volumes:
       - etl_client_data_container:/var/lib/postgresql/data
 volumes:
