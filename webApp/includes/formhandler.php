@@ -1,6 +1,7 @@
 <?php
 //var_dump($_SERVER["REQUEST_METHOD"]);
-	//this should be private
+
+//this should be private
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	// vulnerable to cross-site-scripting without htmlspecialchars
 		$firstname = htmlspecialchars($_POST["firstname"]);
@@ -13,22 +14,19 @@
 			exit();
 			header("Location: ../index.php");
 		}
-		echo "<br>";
-		echo $firstname;
-		echo "<br>";
-		echo $lastname;
-		echo "<br>";
-		echo $areacode;
-		echo "<br>";
-		echo $phone;
-		echo "<br>";
-		echo $email;
-		echo "<br>";
-		echo $total;
-		echo "<br>";
-		
-		header("Location: ../index.php");
+
+		try {
+			require_once "dbhandler.php";
+			// vulnerable to sql injection!
+			$query = "INSERT INTO customers (firstname, lastname, areacode, phonenumber, email, total) VALUES ('$firstname', '$lastname', '$areacode', '$phone', '$email','$total');
+";
+			$pdo->query($query);
+			echo "<h1>success?</h1>";
+		} catch (PDOException $e) {
+			die("Query failed! Error message: " . $e->getMessage());
+		}
 	}
 	else {
-		header("Location: ../index.php");
+		//header("Location: ../index.php");
+		echo "<p>whoops!</p>";
 	}
