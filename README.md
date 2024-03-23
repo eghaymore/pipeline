@@ -7,6 +7,9 @@ All data is randomly generated
 # Pull postgres image
 docker pull postgres:latest
 
+# Decompress customers_backup.sql.xz
+xz -dk customers_backup.sql.xz
+
 # Build new docker image using postgres:latest image
 docker build -t etl_img .
 
