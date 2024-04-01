@@ -10,4 +10,7 @@ webApp/includes/link_formhandler.php
 
 webApp/includes/link_dbhandler.php
 
+webApp/includes/link_lookup_formhandler.php
+        
+webApp/link_config.php
 
