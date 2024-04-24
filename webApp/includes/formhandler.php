@@ -1,29 +1,36 @@
 <?php
 session_start();
-//var_dump($_SERVER["REQUEST_METHOD"]);
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	$firstname = htmlspecialchars($_POST["firstname"]);
-	$lastname = htmlspecialchars($_POST["lastname"]);
-	$areacode = htmlspecialchars($_POST["areacode"]);
-	$phone = htmlspecialchars($_POST["phone"]);
-	$email = htmlspecialchars($_POST["email"]);
-	$total = htmlspecialchars($_POST["total"]);
-	if (empty($firstname)) {
-		exit();
-		header("Location: ../index.php");
-	}
-
-	try {
-		require_once "dbhandler.php";
-		$query = "INSERT INTO customers (firstname, lastname, areacode, phonenumber, email, total) VALUES ('$firstname', '$lastname', '$areacode', '$phone', '$email','$total');
-";
-		$pdo->query($query);
-		echo "<h1>success</h1>";
-	} catch (PDOException $e) {
-		die("Query failed! Error message: " . $e->getMessage());
-	}
-}
-else {
+if (!$_SERVER["REQUEST_METHOD"] == "POST") {
 	header("Location: ../index.php");
+	exit();
 }
+
+$firstname = $_POST["firstname"];
+$lastname = $_POST["lastname"];
+$areacode = $_POST["areacode"];
+$phone = $_POST["phone"];
+$email = $_POST["email"];
+$total = $_POST["total"];
+
+if (empty($firstname) || empty($lastname) || empty($areacode) || empty($phone) || empty($email) || empty($total)) {
+	header("Location: ../index.php");
+	exit();
+}
+
+try {
+	require_once "dbhandler.php";
+	$query = "INSERT INTO customers (firstname, lastname, areacode, phonenumber, email, total) VALUES (?,?,?,?,?,?);";
+	$stmt = $pdo->prepare($query);
+	$stmt->execute([$firstname, $lastname, $areacode, $phone, $email, $total]);	
+	// Free Resources
+	$pdo=null; 
+	$stmt=null;
+	// Display success message
+	header("Location: ../success.html");
+	die();
+} catch (PDOException $e) {
+	die("Query failed! Error message: " . $e->getMessage());
+}
+
+
