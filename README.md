@@ -1,6 +1,7 @@
 # pipeline
-A simple ETL pipeline using PostgreSQL &amp; Cassandra
-All data is randomly generated
+A simple ETL pipeline using PostgreSQL &amp; Cassandra  
+All data is randomly generated  
+See the wiki for setup help
 # Quick Setup (Single Node)
 
 ```shell script
