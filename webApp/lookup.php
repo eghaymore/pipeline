@@ -11,17 +11,19 @@
 		<script src="js/script.js"></script>
 	</head>
 		<?php
-//		require_once "config.php";
+		require_once "config.php";
 		session_start();
 		echo $_SESSION["username"];
 		?>
-	<!-- NOTE: the required attribute is not enough to stop the user from submitting an empty form! user can still submit the form by using the inspect tool-->
-	<!-- Frontend stuff does not provide security! -->
 	<body>
 		<nav class="navbar navbar-dark navbar-expand-md p-md-3">
 			<a href="index.php"class="navbar-brand text-muted">Edward Haymore</a>
 			<button class="navbar-toggler" data-target="#nav-menu" data-toggle="collapse"><span class="navbar-toggler-icon"></span></button>
 			<div id="nav-menu" class="collapse navbar-collapse justify-content-center">
+			<ul class="navbar-nav">
+				<li class="nav-item"><a href="lookup.php" class="nav-link">Lookup</a></li>
+				<li class="nav-item"><a href="signup.php" class="nav-link">Register</a></li>
+			</ul>
 			</div>
 		</nav>
 		<main class="jumbotron shadow-lg">

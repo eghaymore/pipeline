@@ -1,4 +1,5 @@
 <?php
+require_once('model.php');
 session_start();
 
 if (!$_SERVER["REQUEST_METHOD"] == "POST") {
@@ -18,10 +19,8 @@ if (empty($firstname) || empty($lastname) || empty($areacode) || empty($phone) |
 	exit();
 }
 
-$_email = filter_var($u_email, FILTER_SANITIZE_EMAIL);
-$email = filter_var($_email, FILTER_VALIDATE_EMAIL);
-
-if (!email) {
+$email = filter_var($u_email, FILTER_SANITIZE_EMAIL);
+if (!isValidEmail($email)) {
 	//TODO: include error message
 	header("Location: ../index.php");
 	exit();
