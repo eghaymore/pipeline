@@ -13,10 +13,7 @@
 		<?php
 		require_once "config.php";
 		require_once "includes/view.php";
-		checkSignupErrors();
 		?>
-	<!-- NOTE: the required attribute is not enough to stop the user from submitting an empty form! user can still submit the form by using the inspect tool-->
-	<!-- Frontend stuff does not provide security! -->
 	<body>
 		<nav class="navbar navbar-dark navbar-expand-md p-md-3">
 			<a href="index.php"class="navbar-brand text-muted">Edward Haymore</a>
@@ -30,28 +27,28 @@
 			</div>
 		</nav>
 		<main class="jumbotron shadow-lg">
-		<form action="includes/formhandler.php" method="post">
+		<h3>
+		<?php
+			//output_username();
+			if (isset($_SESSION["user_id"])) {
+				echo "You are logged in as " . $_SESSION["username"];
+			} else {
+				echo "Not logged in";
+			}
+		?>
+		</h3>
+		<form action="includes/loginhandler.php" method="post">
 		<div class="form-group">
-			<input type="text" id="firstname" name="firstname" placeholder="Firstname" required>
+			<input type="text" id="username" name="username" placeholder="User Name">
         		<br><br>
-        		<input type="text" id="lastname" name="lastname" placeholder="Lastname" required>
+        		<input type="text" id="password" name="password" placeholder="Password">
         		<br><br>
-			<input type="text" id="areacode" name="areacode" placeholder="Areacode" required>
-        		<br><br>
-			<input type="text" id="phone" name="phone" placeholder="Phone" required>
-        		<br><br>
-			<input type="text" id="email" name="email" placeholder="Email" required>
-        		<br><br>
-			<input type="text" id="total" name="total" placeholder="Total" required>
-        		<br><br>
-        		<button type="submit">Submit</button>
+        		<button type="submit">Sign In</button>
         </div>
 		</form>
-		
-		<form action="includes/logout.php" method="post">
-		<button>Log out</button>
-		</form>
 		</main>
-		
+		<?php
+			checkLoginErrors();
+		?>
 	</body>
 </html>

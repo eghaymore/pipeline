@@ -17,6 +17,8 @@
 			<div id="nav-menu" class="collapse navbar-collapse justify-content-center">
 				<ul class="navbar-nav">
 					<li class="nav-item"><a href="../lookup.php" class="nav-link">Lookup</a></li>
+					<li class="nav-item"><a href="../signup.php" class="nav-link">Register</a></li>
+					<li class="nav-item"><a href="../login.php" class="nav-link">Log in</a></li>
 				</ul>
 			</div>
 		</nav>

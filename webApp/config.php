@@ -13,14 +13,33 @@ session_set_cookie_params([
 
 session_start();
 //session_regenerate_id(true);
-
-if (!isset($_SESSION['last_regen'])) {
-	session_regenerate_id(true);// Creates a new Session ID that is more secure than default
-	$_SESSION['last_regen'] = time();
-} else {
-
-	if (time() - $_SESSION['last_regen'] >= $timeoutSeconds) {
-		session_regenerate_id(true);
+if (isset($_SESSION["user_id"])) {
+	if (!isset($_SESSION['last_regen'])) {
+		session_regenerate_id(true);// Creates a new Session ID that is more secure than default
 		$_SESSION['last_regen'] = time();
+		$newSessionId = session_create_id();
+		$sessionId = $newSessionId . "_" . $_SESSION["user_id"];
+		session_id($sessionId);
+		
+	} else {
+	
+		if (time() - $_SESSION['last_regen'] >= $timeoutSeconds) {
+			session_regenerate_id(true);
+			$_SESSION['last_regen'] = time();
+		}
+	}
+	
+} else {
+	if (!isset($_SESSION['last_regen'])) {
+		session_regenerate_id(true);// Creates a new Session ID that is more secure than default
+		$_SESSION['last_regen'] = time();
+	} else {
+	
+		if (time() - $_SESSION['last_regen'] >= $timeoutSeconds) {
+			session_regenerate_id(true);
+			$_SESSION['last_regen'] = time();
+		}
 	}
 }
+
+
