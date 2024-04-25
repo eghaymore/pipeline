@@ -21,6 +21,7 @@ docker compose -f conf/postgres.yaml up
 docker exec -it etl_client_container bash
 
 # Restore customers database
+psql -U dba -d postgres -c "CREATE DATABASE customers;"
 psql -U dba -d customers -f backup/customers_backup.sql
 
 # Pull cassandra image
