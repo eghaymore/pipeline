@@ -11,9 +11,13 @@
 		<script src="js/script.js"></script>
 	</head>
 		<?php
-//		require_once "config.php";
+		require_once "config.php";
 		session_start();
-		echo $_SESSION["username"];
+		//$_SESSION["username"] = "SomeName";
+		//echo $_SESSION["username"];
+		//session_unset(); //Delete all session data
+		//unset(); // Delete a specific piece of session data
+		//session_destroy(); // Purge all session data
 		?>
 	<!-- NOTE: the required attribute is not enough to stop the user from submitting an empty form! user can still submit the form by using the inspect tool-->
 	<!-- Frontend stuff does not provide security! -->
@@ -34,7 +38,7 @@
         		<br><br>
         		<input type="text" id="lastname" name="lastname" placeholder="Lastname" required>
         		<br><br>
-			<input type="text" id="areacode" name="areacode" placeholder="Zipcode" required>
+			<input type="text" id="areacode" name="areacode" placeholder="Areacode" required>
         		<br><br>
 			<input type="text" id="phone" name="phone" placeholder="Phone" required>
         		<br><br>

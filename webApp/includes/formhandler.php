@@ -10,10 +10,19 @@ $firstname = $_POST["firstname"];
 $lastname = $_POST["lastname"];
 $areacode = $_POST["areacode"];
 $phone = $_POST["phone"];
-$email = $_POST["email"];
+$u_email = $_POST["email"];
 $total = $_POST["total"];
 
 if (empty($firstname) || empty($lastname) || empty($areacode) || empty($phone) || empty($email) || empty($total)) {
+	header("Location: ../index.php");
+	exit();
+}
+
+$_email = filter_var($u_email, FILTER_SANITIZE_EMAIL);
+$email = filter_var($_email, FILTER_VALIDATE_EMAIL);
+
+if (!email) {
+	//TODO: include error message
 	header("Location: ../index.php");
 	exit();
 }
